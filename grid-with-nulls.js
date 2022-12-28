@@ -314,4 +314,6 @@ app.endUndoGroup()
 function grid_again(){
     app.executeCommand(app.findMenuCommandId("Undo GRID"))
     make_grid()
+    app.executeCommand(app.findMenuCommandId("Deselect All"))
+
 }
