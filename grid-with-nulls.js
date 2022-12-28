@@ -49,24 +49,26 @@ function remove_element_all(arr, value) {
     return arr;
 }
 
-// myWindow = new Window ("palette");
-// myWindow.orientation = "column";
-// rows = myWindow.add ("edittext", undefined);
-// columns = myWindow.add ("edittext", undefined);
+myWindow = new Window ("palette");
+myWindow.orientation = "column";
+myWindow.add ("statictext", undefined, "Rows");
+rows = myWindow.add ("edittext", undefined);
+myWindow.add ("statictext", undefined, "Columns");
+columns = myWindow.add ("edittext", undefined);
 
-// rows.characters = 5;
-// columns.characters = 5;
+rows.characters = 5;
+columns.characters = 5;
 
-// ok_btn = myWindow.add ("button", undefined, "OK");
-// again_btn = myWindow.add ("button", undefined, "Again");
+ok_btn = myWindow.add ("button", undefined, "OK");
+again_btn = myWindow.add ("button", undefined, "Again");
 
-// ok_btn.onClick = function(){
-//     make_grid()
-// }
-// again_btn.onClick = function(){
-//     grid_again()
-// }
-// myWindow.show ();
+ok_btn.onClick = function(){
+    make_grid()
+}
+again_btn.onClick = function(){
+    grid_again()
+}
+myWindow.show ();
 
 function make_grid(){
 
@@ -113,10 +115,9 @@ comp.layers.addShape().name = "anchors"
 comp.layer("anchors").property("Transform").property("Position").setValue([0,0])
 comp.layer("anchors").enabled = false
 
-// ROW = rows.text
-// COL = columns.text
-ROW = 3
-COL = 3
+ROW = parseInt(rows.text, 10)
+COL = parseInt(columns.text, 10)
+
 Contents = comp.layer("anchors").property("ADBE Root Vectors Group")
 make_anchors(ROW,COL)
 
@@ -305,7 +306,7 @@ function comps_to_grid(){
 
     }
 }
-
+app.executeCommand(app.findMenuCommandId("Deselect All"))
 app.endUndoGroup()
 }
 
@@ -314,6 +315,3 @@ function grid_again(){
     app.executeCommand(app.findMenuCommandId("Undo GRID"))
     make_grid()
 }
-
-make_grid()
-app.executeCommand(app.findMenuCommandId("Deselect All"))
